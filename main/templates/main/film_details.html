@@ -17,6 +17,7 @@
             <div>
                 <a class="btn btn-success p-2" href="">Trailler</a>
                 <a class="btn btn-warning p-2" href="">watch</a>
+                <a href="{% url 'del' id=film.id %}">Delete movie</a>
             </div>
             <a class="btn btn-secondary p-2" href="{% url 'home'%}">All movies</a>
         </div>

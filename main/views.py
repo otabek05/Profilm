@@ -88,3 +88,11 @@ def category(request, id):
         template_name='main/index.html',
         context=context
     )
+
+
+def film_delate(request, id):
+
+    film = Film.objects.filter(id=id)
+    film.delete()
+    return redirect('home')
+ 
