@@ -1,0 +1,20 @@
+{% extends 'BASE.html' %}
+
+
+
+{% block content %}
+
+<div class="main_2">
+        {% for film in films %}
+        <div class="box">
+            <div class="img">
+                <img src="{{ film.img.url }}" alt="">
+            </div>
+            <h4>{{ film.title }}</h4>
+            <a class="btn btn-primary" href="{% url 'film_details' id=film.id %}">More</a>
+        </div>
+        {% endfor %}
+    
+</div>
+
+{% endblock %}

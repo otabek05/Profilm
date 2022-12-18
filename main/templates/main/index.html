@@ -1,0 +1,34 @@
+{% extends "BASE.html" %}
+
+
+{% block content %}
+{% for category in categories %}
+ <section class="product">
+
+        <h2 class="product-category">{{ category }}</h2>
+        <button class="pre-btn"></button>
+        <button class="nxt-btn"></button>
+        <div class="product-container">
+            {% for film in films %}
+            {% if film.category == category %}
+            <div class="product-card box">
+                <div class="product-image">
+
+                    <img src="{{ film.img.url }}" class="product-thumb" alt="">
+
+                </div>
+                <div class="product-info">
+
+                    <h4 class="product-brand text-center">{{ film.title }}</h4>
+                    <a class="btn btn-success d-block" href="{% url 'film_details' id=film.id %}">More</a>
+
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endfor %}
+{% endblock %}
+
+

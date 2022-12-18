@@ -1,0 +1,28 @@
+{% extends 'BASE.html' %}
+
+
+{% block content %}
+
+
+<div class="details">
+    <div class="img">
+        <img src="{{ film.img.url}}" alt="">
+    </div>
+    <div class="texts">
+        <h1>{{ film.title.capitalize }}</h1>
+        <p>Description: {{ film.description}}</p>
+        <p>Category: {{ film.category }}</p>
+        <p>Film Uploaded date: {{ film.created }}</p>
+        <div class="btns">
+            <div>
+                <a class="btn btn-success p-2" href="">Trailler</a>
+                <a class="btn btn-warning p-2" href="">watch</a>
+            </div>
+            <a class="btn btn-secondary p-2" href="{% url 'home'%}">All movies</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

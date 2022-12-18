@@ -1,0 +1,19 @@
+{% extends 'BASE.html'%}
+
+
+{% block content %}
+
+
+    <form action="" method="post" class=" w-25 row justify-content-center login p-4 mt-4">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input class="form-control" type="text" id="username" name="username">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password">
+        <small>Don't you have an account? <a href="">Sign Up</a></small>
+        <button class="btn btn-primary m-4" type="submit">Log In</button>
+
+    </form>
+
+
+{% endblock %}

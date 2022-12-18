@@ -1,0 +1,16 @@
+{% extends 'BASE.html' %}
+
+
+{% block content %}
+
+{% for user in users %}
+
+<ul>
+    <li><a href="{% url 'film_details'  id=user.id %}">{{user.title}}</a></li>
+
+    <a href="{% url 'film_delete' id=user.id %}">Delete {{ user.title }}</a>
+</ul>
+
+{% endfor %}
+
+{% endblock content %}
