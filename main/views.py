@@ -41,12 +41,16 @@ def film_create(request):
     context={
         'form':FilmCreate,
         'title':'Uploading New Movie',
-        'categories':category
+        'categories':category,
+        'btn':"Create",
+        'color':'primary'
     }
     if request.method=='POST':
         form=FilmCreate(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            film = form.save(commit=False)
+            film.owner=request.user
+            film.save()
             return redirect('home')
     return render(
         request=request,
@@ -85,14 +89,64 @@ def category(request, id):
     }
     return render(
         request=request,
-        template_name='main/index.html',
+        template_name='main/for_search.html',
         context=context
     )
 
 
 def film_delate(request, id):
+    if not request.user.is_authenticated:
+        return redirect('login')
 
     film = Film.objects.filter(id=id)
     film.delete()
     return redirect('home')
  
+def film_update(request, id):
+    category=Category.objects.all()
+    film=Film.objects.get(id=id)
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    if request.method == 'POST':
+        form = FilmCreate(request.POST, request.FILES,instance=film)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+
+
+
+    form=FilmCreate(instance=film)
+    context={
+        'form':form,
+        'categories':category,
+        'title': f'Update {film.title}',
+        'btn':'Update',
+        'color':'success'
+    }
+    return render(
+        request=request,
+        template_name='main/film_create.html',
+        context=context
+    )
+
+
+def profile(request):
+    if not  request.user.is_authenticated:
+        return redirect('login')
+
+    film = Film.objects.filter(owner=request.user)
+    print(film)
+    category =Category.objects.all()
+    context={
+        'title':'My Movies',
+        'films':film,
+        'categories':category
+    }
+
+    return render(
+        request=request,
+        template_name='main/profile.html',
+        context=context
+    )

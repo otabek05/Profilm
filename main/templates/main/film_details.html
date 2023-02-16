@@ -13,13 +13,19 @@
         <p>Description: {{ film.description}}</p>
         <p>Category: {{ film.category }}</p>
         <p>Film Uploaded date: {{ film.created }}</p>
+        <p>{{ film.owner.id }}</p>
         <div class="btns">
             <div>
                 <a class="btn btn-success p-2" href="">Trailler</a>
                 <a class="btn btn-warning p-2" href="">watch</a>
-                <a href="{% url 'del' id=film.id %}">Delete movie</a>
+                
+                {% if request.user.id == film.owner.id and request.user.is_authenticated %}
+                <a class="btn btn-danger" href="{% url 'del' id=film.id %}">Delete</a>
+                <a class="btn btn-warning" href="{% url 'update' id=film.id %}">Update</a>
+                {% endif %}
             </div>
             <a class="btn btn-secondary p-2" href="{% url 'home'%}">All movies</a>
+        
         </div>
     </div>
 </div>

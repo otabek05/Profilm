@@ -13,6 +13,7 @@
             <h4>{{ film.title }}</h4>
             <a class="btn btn-primary" href="{% url 'film_details' id=film.id %}">More</a>
         </div>
+        {% empty %} <h2 class="m-auto" style="color: rgb(227, 223, 223);">OOPS! it seems there is no movie for that searh! Sorry!</h2>
         {% endfor %}
     
 </div>

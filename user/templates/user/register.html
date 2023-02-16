@@ -3,13 +3,14 @@
 
 {% block content %}
 
-<div class="container">
-    <form method="POST" class='form-control' action="{% url 'register' %}">
-        {% csrf_token %}
-        {{ form }}
-        <button class="btn btn-success" type="submit">Sign Up</button>
-    </form>
-</div>
+<form class="form-control" style="width:350px; margin-left:37%" method="POST">
+    {% csrf_token %}
+    {{ form }}
+<button type="submit" class="btn btn-success form-control mt-4" >Sign Up</button>
+
+</form>
+
+
 
 
 {% endblock content %}

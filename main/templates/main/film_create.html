@@ -9,7 +9,7 @@
    <form class="form-control mt-5" action="", method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_div }}
-        <button class="btn btn-primary mt-3" type="submit">Upload</button>
+        <button class="btn btn-{{ color }} mt-3" type="submit">{{ btn }}</button>
    </form>
 </div>
 

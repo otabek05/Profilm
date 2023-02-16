@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from main.models import Category
 from django.contrib.auth import login,authenticate, logout
 from .forms import User_from
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -40,14 +41,13 @@ def user_logout(request):
     return redirect('home')
 
 def user_register(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = User_from(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
             return redirect('login')
-
-
+        else:
+            return redirect('register')
 
     category=Category.objects.all()
     context={
